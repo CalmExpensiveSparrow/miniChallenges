@@ -6,6 +6,11 @@ import re
 #
 # ---------------- Converts lowercase letters to their number position in the alphabet and sums them -------------------
 def lettersum(string: str) -> int:
+    """
+    This function takes var string, converts the lowercase letters to number values, and adds them together
+    :param string: Characters used to sum letter values
+    :return: Summed letter values
+    """
     input_list = re.sub(r"([a-z])", r" \1", string).split()  # Separates string by lowercase letter
 
     word = []
@@ -75,22 +80,66 @@ def odd_sumletter():
 def most_common_lettersum():
     ascii_dict = master_lettersum_dict()
 
-    most_common = 0
-    num_common = 0
-    for base_key in ascii_dict:
-        maybe_key = 0
-        maybe_count = 0
-        for sum_key in ascii_dict:
-            if ascii_dict[sum_key] == ascii_dict[base_key]:
-                maybe_key = ascii_dict[base_key]
-                maybe_count += 1
+    common_dict = {}
+    for key in ascii_dict:
+        if ascii_dict[key] in common_dict:
+            common_dict[ascii_dict[key]] += 1
+        else:
+            common_dict[ascii_dict[key]] = 1
 
-        if num_common < maybe_count:
-            most_common = maybe_key
-            num_common = maybe_count
+    highest_count = 0
+    highest_value = 0
+    for key in common_dict:
+        if common_dict[key] > highest_count:
+            highest_count = common_dict[key]
+            highest_value = key
 
-        if base_key == "zyzzyvas":
-            return print(most_common, num_common)
+    print(f"{highest_value}: {highest_count}")
+
+    # most_common_value = 0
+    # most_common_count = 0
+    # for base_key in ascii_dict:
+    #     base_key_value = 0
+    #     base_key_count = 0
+    #     for sum_key in ascii_dict:
+    #         if ascii_dict[sum_key] == ascii_dict[base_key]:
+    #             base_key_value = ascii_dict[base_key]
+    #             base_key_count += 1
+    #
+    #     if most_common_count < base_key_count:
+    #         most_common_value = base_key_value
+    #         most_common_count = base_key_count
+    #
+    #     if most_common_value == 100:
+    #         return print(most_common_value, most_common_count)
+
+
+def get_lettercount_lettersum(letter_sum: int):
+    """
+    Finds words with same lettersum and an eleven letter difference
+    """
+    common_dict = master_common_lettersum_dict()
+
+    common_lettersum_words = []
+    for key_lettersum in common_dict: # For every key in common_dict
+        if key_lettersum == letter_sum:  # If the key matches the inputted letter_sum
+            for word in common_dict[key_lettersum]:
+                common_lettersum_words.append(word)  # Put the words in the key list in the pairs list
+
+    pairs_dict = {}
+    for word in common_lettersum_words:  # For each word in common_lettersum_words list, get length of word
+        word_len = len(word)
+        for other_word in pairs_dict:  # For each key in pairs_dict, get length of other_word
+            other_word_len = len(other_word)
+            if word_len - other_word_len == 11:  # if word_len and other_word_len have a difference of 11, add pair
+                pairs_dict[other_word] = word
+
+        # for key_word in eleven_dict:
+        #     if len(key) - len(key_word) == 11:
+        #         eleven_dict[key_word] = key
+        #
+
+    # I need a dict with lettersum: [words]
 #  ---------------------------------------------------------------------------------------------------------------------
 
 

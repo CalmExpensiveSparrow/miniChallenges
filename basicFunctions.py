@@ -11,6 +11,10 @@ def master_wordlist() -> list:
 
 
 def master_letter_dict():
+    """
+    Dict{word: letters}
+    :return: dict
+    """
     wordlist = master_wordlist()
 
     letter_dict = {}
@@ -21,6 +25,10 @@ def master_letter_dict():
 
 
 def master_lettersum_dict():
+    """
+    Dict{word: lettersum}
+    :return: dict
+    """
     letter_dict = master_letter_dict()
 
     ascii_dict = {}
@@ -32,3 +40,20 @@ def master_lettersum_dict():
         ascii_dict[key] = add_together  # ascii_dict["word": word sum]
 
     return ascii_dict
+
+
+def master_common_lettersum_dict():
+    """
+    Dict{lettersum: [words]}
+    :return: dict
+    """
+    ascii_dict = master_lettersum_dict()
+
+    lettersum_dict = {"": []}
+    for key in ascii_dict:
+        if ascii_dict[key] in lettersum_dict:
+            lettersum_dict[ascii_dict[key]].append(key)
+        else:
+            lettersum_dict[ascii_dict[key]] = []
+
+    return lettersum_dict
