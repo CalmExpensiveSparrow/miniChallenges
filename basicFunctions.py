@@ -42,14 +42,14 @@ def master_lettersum_dict():
     return ascii_dict
 
 
-def master_common_lettersum_dict():
+def master_common_lettersum_dict() -> dict[int, list[str]]:
     """
     Dict{lettersum: [words]}
     :return: dict
     """
     ascii_dict = master_lettersum_dict()
 
-    lettersum_dict = {"": []}
+    lettersum_dict: dict[int, list[str]] = {}
     for key in ascii_dict:
         if ascii_dict[key] in lettersum_dict:
             lettersum_dict[ascii_dict[key]].append(key)

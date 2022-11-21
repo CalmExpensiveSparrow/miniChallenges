@@ -120,26 +120,36 @@ def get_lettercount_lettersum(letter_sum: int):
     """
     common_dict = master_common_lettersum_dict()
 
-    common_lettersum_words = []
-    for key_lettersum in common_dict: # For every key in common_dict
-        if key_lettersum == letter_sum:  # If the key matches the inputted letter_sum
-            for word in common_dict[key_lettersum]:
-                common_lettersum_words.append(word)  # Put the words in the key list in the pairs list
+    common_lettersum_words = common_dict[letter_sum]
 
+    # common_lettersum_words = []
+    # for key_lettersum in common_dict: # For every key in common_dict
+    #     if key_lettersum == letter_sum:  # If the key matches the inputted letter_sum
+    #         for word in common_dict[key_lettersum]:
+    #             common_lettersum_words.append(word)  # Put the words in the key list in the pairs list
+
+    # pairs_dict = {}
+    # for word in common_lettersum_words:  # For each word in common_lettersum_words list, get length of word
+    #     word_len = len(word)
+    #     for other_word in common_lettersum_words:  # For each key in pairs_dict, get length of other_word
+    #         other_word_len = len(other_word)
+    #         if word_len - other_word_len == 11:  # if word_len and other_word_len have a difference of 11, add pair
+    #             pairs_dict[other_word] = word
+    #
+    # print(pairs_dict)
+
+    # TODO: make this not n^2
     pairs_dict = {}
-    for word in common_lettersum_words:  # For each word in common_lettersum_words list, get length of word
+    for i in range(len(common_lettersum_words)):
+        word = common_lettersum_words[i]
         word_len = len(word)
-        for other_word in pairs_dict:  # For each key in pairs_dict, get length of other_word
+        for j in range(i + 1, len(common_lettersum_words)):
+            other_word = common_lettersum_words[j]
             other_word_len = len(other_word)
-            if word_len - other_word_len == 11:  # if word_len and other_word_len have a difference of 11, add pair
+            if abs(word_len - other_word_len) == 11:
                 pairs_dict[other_word] = word
 
-        # for key_word in eleven_dict:
-        #     if len(key) - len(key_word) == 11:
-        #         eleven_dict[key_word] = key
-        #
-
-    # I need a dict with lettersum: [words]
+    print(pairs_dict)
 #  ---------------------------------------------------------------------------------------------------------------------
 
 
