@@ -1,4 +1,4 @@
 from mainFunctions import *
 import time
 
-get_lettercount_lettersum(151)
+get_word_length_pairs_by_common_sum(151)
