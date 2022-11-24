@@ -67,11 +67,11 @@ def master_sumletter_dict() -> dict[int, list[str]]:
     # Make dict{lettersum: wordletter_dict}
     output = {}
     for key_word in wordsum_dict:  # output keys == wordsum_dict values
-        output[wordsum_dict[key_word]] = []
+        output[wordsum_dict[key_word]] = wordletter_dict[key_word]  #
 
-    wordletter_item_list = list(wordletter_dict.values())
-    for i in range(len(wordletter_item_list)):  # output values == wordletter_dict values
-        output[i] = wordletter_item_list[i]
+    # wordletter_value_list = list(wordletter_dict.values())
+    # for _sum in wordsum_dict.values():  # output values == wordletter_dict values
+    #     output[_sum] = wordletter_value_list[_sum]
 
     return output
 
@@ -79,6 +79,32 @@ def master_sumletter_dict() -> dict[int, list[str]]:
 
 
 
-
-
-
+# # I love this
+# ## no 😡 this still soocs
+# lettersum_dict = {"a": 1, "b": 2, "c": 3}
+# word_numletter_dict = {"alpha": 5, "beta": 4, "cedar": 5}
+#
+# for x, y, z in zip(lettersum_dict.keys(), word_numletter_dict.values(), word_numletter_dict.keys()):
+#     print(x, y, z)
+#
+# swearword_dict = dict(zip(lettersum_dict.keys(), word_numletter_dict.values()))
+# print(swearword_dict)
+#
+# sumword_dict = {}  # -> dict['a': 5, 'b': 4, 'c': 5]
+# for i in range(len(lettersum_dict)):
+#     sumword_dict[list(lettersum_dict.keys())[i]] = list(word_numletter_dict.values())[i]
+#
+# print(sumword_dict)
+#
+# my_list = ["a", "b", "c", "a"]
+# print(set(my_list))
+#
+# something = [f"{i}" if i % 2 == 0 else "ree" for i in range(10)]
+# print(something)
+#
+# something = []
+# for i in range(10):
+#     if i % 2 == 0:  # something.append(f"{i}" if i % 2 == 0 else "ree")
+#         something.append(str(i))
+#     else:
+#         something.append("ree")

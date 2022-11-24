@@ -1,4 +1,4 @@
-from basicFunctions import *
+from C1_helper_functions import *
 import re
 
 
@@ -83,17 +83,17 @@ def most_common_sum_count():
 
     common_sumword_dict = {}
     for key in wordsum_dict:
-        if wordsum_dict[key] in common_sumword_dict:
-            common_sumword_dict[wordsum_dict[key]] += 1
+        if wordsum_dict[key] in common_sumword_dict:  # if wordsum value is in dict
+            common_sumword_dict[wordsum_dict[key]] += 1  # Add one to dict value
         else:
-            common_sumword_dict[wordsum_dict[key]] = 1
+            common_sumword_dict[wordsum_dict[key]] = 1  # Add to dict
 
     highest_count = 0
     highest_value = 0
     for key in common_sumword_dict:
-        if common_sumword_dict[key] > highest_count:
-            highest_count = common_sumword_dict[key]
-            highest_value = key
+        if common_sumword_dict[key] > highest_count:  # if common_sumword_sict value is higher than the value in highest_count
+            highest_count = common_sumword_dict[key]  # set highest_count to common_sumword_dict value
+            highest_value = key  # highest value is the value's key
 
     print(f"{highest_value}: {highest_count}")
 
