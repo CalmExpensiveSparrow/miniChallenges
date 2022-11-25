@@ -5,15 +5,21 @@ from C2_functions import *
 
 class MyTestCase(unittest.TestCase):
     def test_find_one(self):
-        self.assertEqual(1, find_one(1))  # add assertion here
-        self.assertEqual(1, find_one(5))  # add assertion here
-        self.assertEqual(2, find_one(10))  # add assertion here
-        self.assertEqual(12, find_one(20))  # add assertion here
-        self.assertEqual(689, find_one(1234))  # add assertion here
-        self.assertEqual(2557, find_one(5123))  # add assertion here
-        self.assertEqual(38000, find_one(70000))  # add assertion here
-        self.assertEqual(93395, find_one(123321))  # add assertion here
-        self.assertEqual(90051450678399649, find_one(int(math.pow(3,35))))  # add assertion here
+        self.assertEqual(find_one_naiive(1), find_one_complete(1))  # add assertion here
+        self.assertEqual(find_one_naiive(5), find_one_complete(5))  # add assertion here
+        self.assertEqual(find_one_naiive(10), find_one_complete(10))  # add assertion here
+        self.assertEqual(find_one_naiive(20), find_one_complete(20))  # add assertion here
+        self.assertEqual(find_one_naiive(100), find_one_complete(100))  # add assertion here
+        self.assertEqual(find_one_naiive(152), find_one_complete(152))  # add assertion here
+        self.assertEqual(find_one_naiive(184), find_one_complete(184))  # add assertion here
+        self.assertEqual(find_one_naiive(199), find_one_complete(199))  # add assertion here
+        self.assertEqual(find_one_naiive(280), find_one_complete(280))  # add assertion here
+        self.assertEqual(find_one_naiive(1000), find_one_complete(1000))  # add assertion here
+        self.assertEqual(find_one_naiive(1152), find_one_complete(1152))  # add assertion here
+        self.assertEqual(find_one_naiive(1280), find_one_complete(1280))  # add assertion here
+        self.assertEqual(find_one_naiive(2000), find_one_complete(2000))  # add assertion here
+        self.assertEqual(find_one_naiive(2152), find_one_complete(2152))  # add assertion here
+        # self.assertEqual(90051450678399649, find_one(int(math.pow(3,35))))  # add assertion here
 
 
 if __name__ == '__main__':
