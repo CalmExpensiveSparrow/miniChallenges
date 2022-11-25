@@ -33,9 +33,10 @@ def find_one_nines(num: int):
 def find_one_complete(num: int):  # num = 152
     num_str = str(num)
 
-    numbers = []
-    for i in num_str:
-        numbers.append(int(i))  # numbers = [1, 5, 2]
+    # numbers = []
+    # for i in num_str:
+    #     numbers.append(int(i))  # numbers = [1, 5, 2]
+    numbers = [int(i) for i in num_str]
     len_num = len(num_str)
     for i in range(len_num):
         len_num -= 1
