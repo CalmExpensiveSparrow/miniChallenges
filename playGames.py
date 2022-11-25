@@ -56,7 +56,7 @@ import time
 #     count += 1
 # print(count)
 
-# start = time.time()
-# for i in range(100):
-#     print(find_one_complete(35199981))
-# print(time.time() - start)
+start = time.time()
+for i in range(100_000):
+    print(find_one_complete(i))
+print(time.time() - start)

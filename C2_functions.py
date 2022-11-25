@@ -9,9 +9,9 @@ def find_one_naiive(num: int):
     return count
 
 
-# Added for clarity of future code
-def get_int_at_index(num: int, index: int):
-    return int(str(num)[index])
+# # Added for clarity of future code
+# def get_int_at_index(num: int, index: int):
+#     return int(str(num)[index])
 
 
 # The amount of ones under numbers composed of '1' followed by '0's is a
@@ -20,9 +20,9 @@ def find_one_nines(num: int):
     num = str(num)
 
     nines = 0
-    for i in num:
-        nines = len(num) - 1  # Note pattern
-        for j in range(len(num) - 2):
+    for _ in num:
+        nines = len(num) - 1  # Note above pattern
+        for _ in range(len(num) - 2):
             nines = nines * 10  # Starting at 100, multiply by 10 for every additional decimal place
 
     nines = nines + 1  # Includes the 1 in 10^n number for simplicity's sake
@@ -39,7 +39,7 @@ def find_one_complete(num: int):  # num = 152
     len_num = len(num_str)
     for i in range(len_num):
         len_num -= 1
-        for j in range(len_num):
+        for _ in range(len_num):
             numbers[i] = numbers[i] * 10  # numbers = [100, 50, 2]
 
     count = 0
@@ -57,9 +57,9 @@ def find_one_complete(num: int):  # num = 152
             return count + nines + other_numbers
 
         else:  # If first digit of number > 1
-            first_digit = get_int_at_index(number, 0)
+            first_digit = int(str(num)[i])
             # Ex. 1  Ones added by 10^n number + nines below 10^n number minus extra 1 from find_ones_nines() * first_digit
-            # Ex. 2  280 = (200 // 2) + (nines(200 // 2) - 1)*2
+        # Ex. 2  280 = (200  //      2)      +    (nines(         200 // 2)           - 1) *    2
             count += (number // first_digit) + (find_one_nines(number // first_digit) - 1) * first_digit
 
     return count
