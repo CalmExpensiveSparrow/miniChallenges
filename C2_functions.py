@@ -1,4 +1,3 @@
-import re
 
 
 def find_one_naiive(num: int):
@@ -10,68 +9,60 @@ def find_one_naiive(num: int):
     return count
 
 
+# Added for clarity of future code
 def get_int_at_index(num: int, index: int):
     return int(str(num)[index])
 
 
-def find_one_complete(num: int):  # 152
-    num_str = str(num)
-
-    len_num = len(num_str)
-    numbers = []
-    for i in num_str:
-        numbers.append(int(i))  # [1, 5, 2]
-    for i in range(len_num):
-        len_num -= 1
-        for j in range(len_num):
-            numbers[i] = numbers[i] * 10  # [100, 50, 2]
-
-    count = 0
-    for i in range(len(numbers)):
-        numb = numbers[i]
-
-        if numb == 0:
-            continue
-
-        if str(numb)[0] == "1":  # If num is in 100s place
-            nines = find_one_nines(numb)  # Find nines
-            other_numbers = sum(numbers[i+1:])
-            nines += find_one_complete(other_numbers)
-            return count + nines + other_numbers
-
-        else:  # If first digit is over 1
-            first_digit = get_int_at_index(numb, 0)
-        # for 280  =       200 // 2        +             nines(200 // 2)                *      2
-            count += (numb // first_digit) + ((find_one_nines(numb // first_digit) - 1) * first_digit)
-
-    return count
-
-
-def find_one_from(num1, num2):
-    count = 0
-    for i in range(num1, num2):
-        for j in str(i):
-            if j == "1":
-                count += 1
-    return count
-
-
+# The amount of ones under numbers composed of '1' followed by '0's is a
+# repeating pattern(10 -> 1, 100 -> 20, 1000 -> 300...)
 def find_one_nines(num: int):
     num = str(num)
 
-    digits = []
-    for i in num:
-        digits.append(int(i))  # ['1', '2', '3', '4', '5', '6']
-
     nines = 0
-    for i in digits:  # For each digit
-        nines = len(num) - 1
-        for j in range(len(num) - 2):  # For len(num) - 2 times, nines * 10
-            nines = nines * 10
+    for i in num:
+        nines = len(num) - 1  # Note pattern
+        for j in range(len(num) - 2):
+            nines = nines * 10  # Starting at 100, multiply by 10 for every additional decimal place
 
-    nines = nines + 1
+    nines = nines + 1  # Includes the 1 in 10^n number for simplicity's sake
 
     return nines
+
+
+def find_one_complete(num: int):  # num = 152
+    num_str = str(num)
+
+    numbers = []
+    for i in num_str:
+        numbers.append(int(i))  # numbers = [1, 5, 2]
+    len_num = len(num_str)
+    for i in range(len_num):
+        len_num -= 1
+        for j in range(len_num):
+            numbers[i] = numbers[i] * 10  # numbers = [100, 50, 2]
+
+    count = 0
+    for i in range(len(numbers)):
+        number = numbers[i]
+
+        if number == 0:
+            continue
+
+        if str(number)[0] == "1":  # If number is 10^n
+            nines = find_one_nines(number)
+            other_numbers = sum(
+                numbers[i + 1:])  # Sum the rest of the list to get amount of ones added by first 10^n number
+            other_numbers += find_one_complete(other_numbers)  # Repeat for other_numbers
+            return count + nines + other_numbers
+
+        else:  # If first digit of number > 1
+            first_digit = get_int_at_index(number, 0)
+            # Ex. 1  Ones added by 10^n number + nines below 10^n number minus extra 1 from find_ones_nines() * first_digit
+            # Ex. 2  280 = (200 // 2) + (nines(200 // 2) - 1)*2
+            count += (number // first_digit) + (find_one_nines(number // first_digit) - 1) * first_digit
+
+    return count
 
 
 
@@ -149,11 +140,11 @@ def find_one_nines(num: int):
 #                 count = hund_teens + teens + tens + nines
 #         return count
 
-
-def test_find_one(num):
-    one = find_one_complete(num)
-    naiive = find_one_naiive(num)
-    print(f"{num}  fo: {one}  n: {naiive}")
+#
+# def test_find_one(num):
+#     one = find_one_complete(num)
+#     naiive = find_one_naiive(num)
+#     print(f"{num}  fo: {one}  n: {naiive}")
 
 
 
